@@ -1,3 +1,3 @@
-f= open("guru99.txt","w+")
+f = open("guru99.txt", "w+")
 f.write("hello")
 f.close()

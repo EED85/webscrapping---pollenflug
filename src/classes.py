@@ -26,14 +26,6 @@ class DonnerwetterPollenflugScrapper(object):
         html_files = glob.glob(self.location_html + os.path.sep + "*.html")
         for url in html_files:
             soup = bs4.BeautifulSoup(open(url), "html.parser")
-            # <tr bgcolor="#FFFBD6" valign="middle" align="left">
-            # <td><img src="//static.donnerwetter.de/images/pollgb.gif" align="middle" width="30" height="30" data-pagespeed-url-hash="3210090727" onload="pagespeed.CriticalImages.checkImageForCriticality(this);"></td>
-            # <td><font size="3"><b><font size="2">Erle</font></b></font></td>
-            # <td><img src="//static.donnerwetter.de/images/poll0.gif" width="90" height="30" alt="keine" data-pagespeed-url-hash="3218762444" onload="pagespeed.CriticalImages.checkImageForCriticality(this);"> </td>
-            # <td><font size="1">Verlauf<br>
-            # <a href="/pollenflug/region.hts?lid=DE14331&amp;Ort=BERGISCH GLADBACH&amp;PTag=LF&amp;Allergen=1">Langfrist</a></font>
-            # </td>
-            # </tr>
             tr = soup.find("tr", {"bgcolor": "#FFFBD6"})
             table = tr.find_parent()
             all_tr = table.find_all("tr")
@@ -42,7 +34,7 @@ class DonnerwetterPollenflugScrapper(object):
             i = -1
             d = dict()
             for tr in all_tr:
-                i+=1
+                i += 1
                 d_tmp = dict()
                 all_td = tr.find_all("td")
                 if all_td[1].text:
