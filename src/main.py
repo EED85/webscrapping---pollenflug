@@ -1,11 +1,12 @@
+# Init
 import os
 import git
 from classes import DonnerwetterPollenflugScrapper as Scrapper
+repo_path = os.getcwd()
+repo = git.Repo(repo_path)
+os.chdir(os.path.join(repo_path, 'src'))
+l_plz = ["51427", "Welling"]
 
-repo = git.Repo(os.getcwd())
-
-os.chdir(os.getcwd()+os.path.sep + 'src')
-l_plz = ["51427"]
 
 url_root = "https://www.donnerwetter.de/region/ortrubrik.mv?Rubrik=%2Fpollenflug%2Fregion.hts&search="
 
@@ -14,7 +15,8 @@ scrapper.download_html()
 scrapper.extract_pollination()
 
 
-# push csv to github
-repo.index.add(r"C:\DEV\git\scrapping-pollination\src\data\51427.csv")
+# commit and push csv to github
+add_path = os.path.join(repo_path, 'src', 'data', '*.csv')
+repo.index.add(add_path)
 repo.index.commit("adding csv")
 repo.remotes.origin.push()

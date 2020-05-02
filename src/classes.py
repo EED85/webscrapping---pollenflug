@@ -3,6 +3,7 @@ import glob
 import bs4
 import os
 import pandas as pd
+import datetime
 
 
 class DonnerwetterPollenflugScrapper(object):
@@ -10,9 +11,9 @@ class DonnerwetterPollenflugScrapper(object):
         self.url_root = url_root
         self.liste_plz = liste_plz
         self.location_html = location_html
-
+        self._execution_time = None
     def download_html(self):
-
+        self._execution_time = datetime.datetime.now()
         for plz in self.liste_plz:
             url = self.url_root + plz
             r = requests.get(url)
@@ -47,4 +48,12 @@ class DonnerwetterPollenflugScrapper(object):
                         d_tmp["staerke_num"] = int(all_td[3].find("a")["href"][all_td[3].find("a")["href"].find("Staerke=")+8:])
                     d[i] = d_tmp
             df = pd.DataFrame(d).transpose()
-            df.to_csv(self.location_html + os.path.sep + csv)
+            df["execution_time"] = self._execution_time
+            df.index.name = "index"
+            csv_full_path = self.location_html + os.path.sep + csv
+            if os.path.isfile(csv_full_path):
+                df_csv = pd.read_csv(csv_full_path)
+                df_csv = df_csv.set_index('index')
+                df = df.append(df_csv)
+                df.index.name = "index"
+            df.to_csv(csv_full_path)
