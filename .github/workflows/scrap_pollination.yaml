@@ -2,7 +2,13 @@
 
 name: Python package
 
-on: [push]
+on: 
+    push:
+        branches:
+            - master
+        paths-ignore:
+         - 'src/data/**'
+   
 
 jobs:
   build:
