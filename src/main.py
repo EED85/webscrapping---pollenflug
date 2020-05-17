@@ -18,5 +18,5 @@ scrapper.extract_pollination()
 # commit and push csv to github
 add_path = os.path.join(repo_path, 'src', 'data', '*.csv')
 repo.index.add(add_path)
-repo.index.commit("adding csv")
+repo.index.commit("#15 adding csv")
 repo.remotes.origin.push()
