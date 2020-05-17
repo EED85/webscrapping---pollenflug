@@ -1,28 +1,23 @@
 # Webscrapping
 
-
-
 ## Used Techniques
 
 ### Preliminary remarks
 
 package Beuatifulsoup is used to scrape particular web pages
 
-
 ### requirements.txt
 
-```
+``` conda prompt
 pip freeze > requirements.txt
 ```
-
 
 ### Running Python Scripts with Github
 
 Introduction:
-https://help.github.com/en/actions/language-and-framework-guides/using-python-with-github-actions
+<https://help.github.com/en/actions/language-and-framework-guides/using-python-with-github-actions>
 
-https://help.github.com/en/actions/configuring-and-managing-workflows/configuring-a-workflow#filtering-for-specific-branches-tags-and-paths
-
+<https://help.github.com/en/actions/configuring-and-managing-workflows/configuring-a-workflow#filtering-for-specific-branches-tags-and-paths>
 
 ### upload to Github Repository
 
@@ -34,7 +29,7 @@ not tested yet
 
 ### Upload to sharepoint
 
-#### Authentification
+#### Authentification SP
 
 see above
 
@@ -42,7 +37,7 @@ see above
 
 not testet yet
 
-https://pypi.org/project/SharePlum/
+<https://pypi.org/project/SharePlum/>
 
 ```python
 from shareplum import Site
@@ -61,4 +56,4 @@ folder.delete_file('new.txt')
 
 or
 
-https://www.pythonbite.tech/11-blog/python-advanced/4-uploading-files-to-sharepoint
+<https://www.pythonbite.tech/11-blog/python-advanced/4-uploading-files-to-sharepoint>
