@@ -56,5 +56,6 @@ class DonnerwetterPollenflugScrapper(object):
                 df_csv = pd.read_csv(csv_full_path)
                 df_csv = df_csv.set_index('index')
                 df = df.append(df_csv)
+                df = df.sort_values(by=['execution_time', 'index'], ascending=[True, True])
                 df.index.name = "index"
             df.to_csv(csv_full_path)
