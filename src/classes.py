@@ -12,6 +12,7 @@ class DonnerwetterPollenflugScrapper(object):
         self.liste_plz = liste_plz
         self.location_html = location_html
         self._execution_time = None
+
     def download_html(self):
         self._execution_time = datetime.datetime.now()
         for plz in self.liste_plz:
