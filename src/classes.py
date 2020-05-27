@@ -12,6 +12,7 @@ class DonnerwetterPollenflugScrapper(object):
         self.liste_plz = liste_plz
         self.location_html = location_html
         self._execution_time = None
+
     def download_html(self):
         self._execution_time = datetime.datetime.now()
         for plz in self.liste_plz:
@@ -55,5 +56,6 @@ class DonnerwetterPollenflugScrapper(object):
                 df_csv = pd.read_csv(csv_full_path)
                 df_csv = df_csv.set_index('index')
                 df = df.append(df_csv)
+                df = df.sort_values(by=['execution_time', 'index'], ascending=[True, True])
                 df.index.name = "index"
             df.to_csv(csv_full_path)
