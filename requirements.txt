@@ -27,8 +27,6 @@ gitdb==4.0.2
 flake8==3.7.9
 entrypoints==0.3
 cryptography==2.8
-conda==4.8.3
-conda-package-handling==1.6.0
 chardet==3.0.4
 cffi==1.14.0
 certifi==2020.4.5.1
