@@ -20,6 +20,3 @@ add_path = os.path.join(repo_path, 'src', 'data', '*.csv')
 repo.index.add(add_path)
 repo.index.commit("#15 adding csv")
 repo.remotes.origin.push()
-
-import pkg_resources
-[print(d.project_name + "==" + d.version) for d in pkg_resources.working_set]
