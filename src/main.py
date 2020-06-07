@@ -1,12 +1,15 @@
 # Init
 import os
 import git
+import json
 from classes import DonnerwetterPollenflugScrapper as Scrapper
 repo_path = os.getcwd()
 repo = git.Repo(repo_path)
 os.chdir(os.path.join(repo_path, 'src'))
-l_plz = ["51427", "Welling", "38100", "57462","60311"]
 
+with open("places.json", "r") as read_file:
+    d_places = json.load(read_file)
+l_plz = list(d_places.values())
 
 url_root = "https://www.donnerwetter.de/region/ortrubrik.mv?Rubrik=%2Fpollenflug%2Fregion.hts&search="
 
