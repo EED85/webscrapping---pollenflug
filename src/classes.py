@@ -19,8 +19,9 @@ class DonnerwetterPollenflugScrapper(object):
             url = self.url_root + plz
             r = requests.get(url)
             c = r.content
+            plz_clean = plz.replace("%20", "_").replace("ö","oe")
             # soup = bs4.BeautifulSoup(c,"html.parser")
-            html = self.location_html + os.path.sep+plz.replace("%20","_")+'.html'
+            html = self.location_html + os.path.sep+plz_clean+'.html'
             with open(html, 'w', encoding="utf-8") as f:
                 f.write(str(c))
 
