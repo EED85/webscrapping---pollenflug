@@ -7,7 +7,7 @@ repo_path = os.getcwd()
 repo = git.Repo(repo_path)
 os.chdir(os.path.join(repo_path, 'src'))
 
-with open("places.json", "r") as read_file:
+with open("places.json", "r",encoding = "utf-8") as read_file:
     d_places = json.load(read_file)
 l_plz = list(d_places.values())
 
