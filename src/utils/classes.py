@@ -4,6 +4,7 @@ import bs4
 import os
 import pandas as pd
 import datetime
+import utils.EEDCORE.string_handler as string_handler
 
 
 class DonnerwetterPollenflugScrapper(object):
@@ -19,7 +20,8 @@ class DonnerwetterPollenflugScrapper(object):
             url = self.url_root + plz
             r = requests.get(url)
             c = r.content
-            plz_clean = plz.replace("%20", "_").replace("ö","oe")
+            plz_clean = plz.replace("%20", "_")
+            plz_clean = string_handler.remove_special_character(plz_clean)
             # soup = bs4.BeautifulSoup(c,"html.parser")
             html = self.location_html + os.path.sep+plz_clean+'.html'
             with open(html, 'w', encoding="utf-8") as f:
@@ -47,7 +49,9 @@ class DonnerwetterPollenflugScrapper(object):
                     if verlauf_href.find("Staerke") == -1:
                         d_tmp["staerke_num"] = 0
                     else:
-                        d_tmp["staerke_num"] = int(all_td[3].find("a")["href"][all_td[3].find("a")["href"].find("Staerke=")+8:])
+                        d_tmp["staerke_num"] = int(all_td[3].find(
+                            "a")["href"][all_td[3].find("a")["href"]
+                                         .find("Staerke=")+8:])
                     d[i] = d_tmp
             df = pd.DataFrame(d).transpose()
             df["execution_time"] = self._execution_time
@@ -57,6 +61,7 @@ class DonnerwetterPollenflugScrapper(object):
                 df_csv = pd.read_csv(csv_full_path)
                 df_csv = df_csv.set_index('index')
                 df = df.append(df_csv)
-                df = df.sort_values(by=['execution_time', 'index'], ascending=[True, True])
+                df = df.sort_values(
+                    by=['execution_time', 'index'], ascending=[True, True])
                 df.index.name = "index"
             df.to_csv(csv_full_path)
