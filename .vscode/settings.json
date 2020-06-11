@@ -1,6 +1,8 @@
 {
     "python.pythonPath": "C:\\Python_Environments\\py37_web\\python.exe",
     "python.linting.pylintEnabled": false,
-    "python.linting.flake8Enabled": true,
-    "python.linting.enabled": true
+    "python.linting.flake8Enabled": false,
+    "python.linting.enabled": true,
+    "python.formatting.provider": "autopep8",
+    "python.linting.pycodestyleEnabled": true
 }
